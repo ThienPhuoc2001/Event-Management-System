@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class EventDetailsController {
+public class EventDetailsController extends  BaseEventController {
 
     @FXML
     private Label nameLabel, startDateLabel, endDateLabel, locationLabel, descriptionLabel, coordinatorLabel, guideLabel, notesLabel;
@@ -47,13 +47,30 @@ public class EventDetailsController {
     @FXML
     private void btnAssignCoordinator(ActionEvent event) {
 
-        openCoordinatorList(eventID); // Now eventID is properly stored
+        openCoordinatorList(eventID);
+    }
+
+
+    @FXML
+            private void handlePrintTickets(ActionEvent eventID) {
+        System.out.println("Event ID before passing: " + getEventId());  // Debugging
+
+        openWindow(
+                "/dk/easv/ticketbar2/print-ticket.fxml",
+                "Print Ticket",
+                controller -> {
+                    if (controller instanceof PrintTicketsController) {
+                        ((PrintTicketsController)controller).setEventId(getEventId());
+                    }
+                }
+        );
     }
 
     private void openCoordinatorList(int eventID) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/dk/easv/ticketbar2/coordinator-list.fxml"));
             Parent root = loader.load();
+
 
             CoordinatorListController controller = loader.getController();
             controller.setEventID(eventID); // Pass event ID

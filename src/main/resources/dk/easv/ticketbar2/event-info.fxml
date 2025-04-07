@@ -117,7 +117,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="61.0" prefWidth="668.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="buttons" stylesheets="@Main.css" text="Print Ticket">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlePrintTickets" styleClass="buttons" stylesheets="@Main.css" text="Print Ticket">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
